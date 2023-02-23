@@ -1,14 +1,11 @@
-stage('Build') {
-        steps {
-           script{
-             if(params.SKIP_TESTS){
-               sh 'npm install'
-               sh 'npm run build:${ENV}'
-             }else{
-               sh 'npm install'
-               sh 'npm run test'
-               sh 'npm run build:${ENV}'
-                    }
-                  }
-               }
-             }
+//create a jenkins file to build an angular project
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'ng build --prod'
+            }
+        }
+    }
+}
